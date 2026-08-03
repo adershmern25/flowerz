@@ -1,245 +1,517 @@
+<!-- ========== index.html (Home) ========== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowerz – Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flora — Home | Thrissur Flower Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ── RESET & BASE ── */
-        * {
+        /* ----- RESET & BASE ----- */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.18);
+            --glass-border: rgba(255, 255, 255, 0.30);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+            --glass-blur: blur(16px);
+            --primary: #f28b9c;
+            --primary-dark: #d46a7a;
+            --primary-light: #fcd5d9;
+            --secondary: #a8d8c8;
+            --secondary-dark: #7fc0ae;
+            --accent: #f5c6a0;
+            --dark: #2d2a2e;
+            --text-light: #f8f4f0;
+            --text-dark: #2d2a2e;
+            --card-radius: 28px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #fce9e6 0%, #f8d5d0 35%, #f0d5c8 70%, #e8d5c4 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: var(--text-dark);
+            overflow-x: hidden;
             padding: 20px;
-            position: relative;
+            line-height: 1.6;
         }
 
-        /* ── BACKGROUND SLIDER ── */
-        .bg-slider {
+        /* floating orbs – animated background */
+        .bg-orb {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
             z-index: 0;
+            opacity: 0.50;
         }
-
-        .bg-slider .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0;
-            animation: bgFade 24s infinite;
+        .bg-orb--1 {
+            width: 500px;
+            height: 500px;
+            top: -150px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(242, 139, 156, 0.45), transparent 70%);
+            animation: floatOrb 22s ease-in-out infinite alternate;
         }
-
-        .bg-slider .slide:nth-child(1) { animation-delay: 0s; }
-        .bg-slider .slide:nth-child(2) { animation-delay: 6s; }
-        .bg-slider .slide:nth-child(3) { animation-delay: 12s; }
-        .bg-slider .slide:nth-child(4) { animation-delay: 18s; }
-
-        @keyframes bgFade {
-            0%   { opacity: 0; }
-            8%   { opacity: 1; }
-            25%  { opacity: 1; }
-            33%  { opacity: 0; }
-            100% { opacity: 0; }
+        .bg-orb--2 {
+            width: 600px;
+            height: 600px;
+            bottom: -200px;
+            right: -150px;
+            background: radial-gradient(circle, rgba(168, 216, 200, 0.40), transparent 70%);
+            animation: floatOrb 26s ease-in-out infinite alternate-reverse;
         }
-
-        /* ── CONTENT sits above background ── */
-        ul, .box-container {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ── NAVIGATION (unchanged styles, only margin & position tweaked) ── */
-        ul {
-            list-style-type: none;
-            margin: 10px auto 0 auto;   /* consistent top margin */
-            padding: 0;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            background: rgba(245, 222, 179, 0.25);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            box-shadow: 0 8px 32px rgba(104, 2, 141, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            border-radius: 20px 20px 20px 20px;
-            position: sticky;
-            top: 10px;                 /* sticks with a small gap */
-            display: flex;
-            justify-content: center;
-            width: fit-content;
-        }
-
-        li { display: block; }
-
-        li a {
-            display: block;
-            color: #000000;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-family: cursive;
-            transition: all 0.3s ease;
-        }
-
-        li a:hover:not(.active) {
-            color: #68028d;
-            background-color: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(8px);
-        }
-
-        li a.active {
-            color: #68028d;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(8px);
-        }
-
-        /* ── MAIN CARD (unchanged) ── */
-        .box-container {
-            width: 550px;
+        .bg-orb--3 {
+            width: 400px;
             height: 400px;
+            top: 40%;
+            left: 60%;
+            background: radial-gradient(circle, rgba(245, 198, 160, 0.35), transparent 70%);
+            animation: floatOrb 18s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatOrb {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(50px, -40px) scale(1.15);
+            }
+        }
+
+        /* ----- GLASS CARD BASE ----- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: var(--card-radius);
+        }
+
+        .glass-dark {
+            background: rgba(45, 42, 46, 0.20);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            border-radius: var(--card-radius);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(255, 255, 255, 0.40);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border-radius: var(--card-radius);
+        }
+
+        /* ----- LAYOUT CONTAINER ----- */
+        .app {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ----- NAVIGATION ----- */
+        .navbar {
             display: flex;
-            flex-direction: row;
-            padding-left: 10px;
-            padding: 20px;
-            margin: 70px auto;
-            background: rgba(255, 255, 255, 0.326);
-            border-color: #ffffff;
-            justify-content: center;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.45);
-            background-size: cover;
-            box-shadow: 0 8px 32px 0 rgba(104, 2, 141, 0.337), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-
-        .box h1 {
-            color: #68028d;
-            font-family: cursive;
-            padding-left: 100px;
-            font-size: 35px;
-            font-weight: bolder;
-        }
-
-        #para {
-            color: #000000;
-            font-family: cursive;
-            padding-left: 110px;
-        }
-
-        #para1 {
-            color: #000000;
-            font-family: cursive;
-        }
-
-        #buttons {
-            font-family: cursive;
-            width: 150px;
-            height: 50px;
-            display: flex;
-            background: rgba(95, 6, 125, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            justify-content: center;
             align-items: center;
-            border-radius: 30px;
-            color: #ffffff;
-            cursor: pointer;
+            justify-content: space-between;
+            padding: 14px 32px;
+            margin-bottom: 40px;
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            justify-self: center;
-            margin: 50px;
-            padding-left: 10px;
-            box-shadow: 0 4px 16px rgba(104, 2, 141, 0.2);
         }
 
-        #buttons:hover {
-            background: rgba(95, 6, 125, 0.45);
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .logo i {
+            color: var(--primary);
+            font-size: 1.7rem;
+        }
+        .logo span {
+            font-weight: 400;
+            font-style: italic;
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            margin-left: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: rgba(255, 255, 255, 0.40);
+            border-color: rgba(255, 255, 255, 0.50);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+        .nav-links a:active {
+            background: rgba(242, 139, 156, 0.25);
+        }
+        .nav-links a i {
+            margin-right: 6px;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.40);
+            border-color: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ----- SECTIONS ----- */
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .section-title i {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 2rem;
+        }
+        .section-sub {
+            font-size: 1.05rem;
+            color: rgba(45, 42, 46, 0.70);
+            font-weight: 400;
+            max-width: 560px;
+        }
+
+        /* ----- HERO / HOME ----- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 20px 0 10px;
+        }
+        .hero-content {
+            padding: 20px 10px;
+        }
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(242, 139, 156, 0.20);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(242, 139, 156, 0.30);
+            border-radius: 40px;
+            padding: 4px 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+        .hero-content h1 i {
+            color: var(--primary);
+            font-style: normal;
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(45, 42, 46, 0.75);
+            max-width: 440px;
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            cursor: default;
+            background: rgba(255, 255, 255, 0.30);
+            backdrop-filter: blur(8px);
+            border-color: rgba(255, 255, 255, 0.40);
+            color: var(--dark);
+        }
+        .btn-primary {
+            background: rgba(242, 139, 156, 0.55);
+            border-color: rgba(242, 139, 156, 0.50);
+            backdrop-filter: blur(8px);
+            color: var(--dark);
+            box-shadow: 0 4px 16px rgba(242, 139, 156, 0.20);
+        }
+        .btn-primary:hover {
+            background: rgba(242, 139, 156, 0.75);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(242, 139, 156, 0.30);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.40);
             transform: translateY(-2px);
         }
 
-        @media (max-width: 600px) {
-            .box-container {
-                width: 100%;
-                height: auto;
-                padding: 18px;
-                margin: 40px auto;
-            }
-            .box h1 {
-                font-size: 28px;
-                padding-left: 0;
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-flower-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            width: 100%;
+            max-width: 380px;
+        }
+        .flower-card {
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 20px;
+            padding: 20px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .flower-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.30);
+            border-color: rgba(255, 255, 255, 0.55);
+        }
+        .flower-card .icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .flower-card .name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--dark);
+        }
+        .flower-card .sub {
+            font-size: 0.7rem;
+            color: rgba(45, 42, 46, 0.55);
+        }
+        .flower-card--lg {
+            grid-column: span 2;
+            padding: 24px;
+        }
+        .flower-card--lg .icon {
+            font-size: 3.6rem;
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            margin-top: 40px;
+            padding: 20px 28px;
+            border-radius: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.20);
+            font-size: 0.9rem;
+            color: rgba(45, 42, 46, 0.65);
+        }
+        .footer strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        .footer i {
+            color: var(--primary);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
-            #para {
-                padding-left: 0;
-                text-align: center;
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
             }
-            #para1 {
-                padding-left: 0;
-                text-align: center;
+            .hero-cta {
+                justify-content: center;
             }
-            ul {
-                padding: 4px 12px;
+            .hero-flower-grid {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 12px;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px 20px;
+                border-radius: 32px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 4px;
             }
-            li a {
-                padding: 10px 14px;
-                font-size: 0.9rem;
+            .nav-links a {
+                font-size: 0.8rem;
+                padding: 6px 14px;
             }
-            #buttons {
-                margin: 20px auto;
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .hero-flower-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .flower-card .icon {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .hero-flower-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .nav-links a {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+            .logo {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ─── BACKGROUND SLIDER ─── -->
-    <div class="bg-slider">
-        <div class="slide" style="background-image: url('src/BG2.jpg');"></div>
-        <div class="slide" style="background-image: url('src/bg\ 3.jpg');"></div>
-        <div class="slide" style="background-image: url('src/BG1.jpg');"></div>
-        <div class="slide" style="background-image: url('src/BG4.jpg');"></div>
-    </div>
-  <br><br>
-    <!-- ─── NAV (no extra <br> before) ─── -->
-    <ul>
-        <li><a class="active" href="index.html">HOME</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
-    </ul>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
 
+    <div class="app">
 
+        <!-- ====== NAVIGATION ====== -->
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-seedling"></i> Flora <span>Thrissur</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-leaf"></i> About</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
 
-    <!-- ─── MAIN CONTENT ─── -->
-    <div class="box-container">
-        <div class="box">
-            <h1>Welcome to Flowerz</h1>
-            <div id="para"><p>Easy to buy flowers online - Platform</p></div>
-            <br><br>
-            <div id="para1">
-                <p>Welcome to Flowerz, your premier local destination for farm-fresh blooms in Thrissur. We source directly from the region's finest growers to bring you stunning, handcrafted arrangements for every occasion. Discover our latest collection on the Shop Flowers page, or let us craft a custom design for you today.</p>
+        <!-- ====== HOME HERO ====== -->
+        <section id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <span class="badge"><i class="fas fa-map-pin"></i> Thrissur · Kerala</span>
+                    <h1>Blossoms <i>&</i> <br />Bouquets <i>for</i> every <br />moment.</h1>
+                    <p>Welcome to Flora — where nature meets artistry. Fresh flowers, handcrafted arrangements, and same‑day delivery across Thrissur city.</p>
+                    <div class="hero-cta">
+                        <a href="gallery.html" class="btn btn-primary"><i class="fas fa-flower"></i> Explore Gallery</a>
+                        <a href="contact.html" class="btn btn-outline"><i class="fas fa-phone-alt"></i> Get in touch</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-flower-grid">
+                        <div class="flower-card"><span class="icon">🌹</span><div class="name">Rose</div><div class="sub">classic</div></div>
+                        <div class="flower-card"><span class="icon">🌷</span><div class="name">Tulip</div><div class="sub">elegant</div></div>
+                        <div class="flower-card"><span class="icon">🌸</span><div class="name">Cherry</div><div class="sub">bloom</div></div>
+                        <div class="flower-card"><span class="icon">🌻</span><div class="name">Sunflower</div><div class="sub">radiant</div></div>
+                        <div class="flower-card flower-card--lg"><span class="icon">💐</span><div class="name">Custom Bouquets</div><div class="sub">designed for you</div></div>
+                    </div>
+                </div>
             </div>
-            <div id="buttons">Contact Us</div>
-        </div>
+        </section>
+
+        <!-- ====== FOOTER ====== -->
+        <footer class="footer">
+            <p>
+                <i class="fas fa-seedling"></i> &nbsp; <strong>Flora</strong> · Thrissur &nbsp; | &nbsp;
+                <i class="fas fa-map-pin"></i> Swaraj Round, MG Road &nbsp; | &nbsp;
+                <i class="fas fa-phone"></i> +91 9847 123 456
+                <br style="display:block; margin:4px 0;" />
+                <span style="opacity:0.6; font-size:0.8rem;">
+                    <i class="far fa-copyright"></i> 2026 Flora — crafted with <i class="fas fa-heart" style="color:var(--primary);"></i> in Thrissur
+                </span>
+            </p>
+        </footer>
+
     </div>
-
-
-    
 </body>
 </html>
