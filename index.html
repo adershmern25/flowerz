@@ -1,14 +1,19 @@
-<!-- ========== index.html (Home) ========== -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flora — Home | Thrissur Flower Shop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>Thrissur Tourism — Cultural Capital of Kerala</title>
+
+    <!-- Google Fonts (modern & elegant) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
     <style>
-        /* ----- RESET & BASE ----- */
+        /* ============================================================
+               RESET & BASE
+            ============================================================ */
         *,
         *::before,
         *::after {
@@ -18,21 +23,21 @@
         }
 
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.18);
-            --glass-border: rgba(255, 255, 255, 0.30);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-            --glass-blur: blur(16px);
-            --primary: #f28b9c;
-            --primary-dark: #d46a7a;
-            --primary-light: #fcd5d9;
-            --secondary: #a8d8c8;
-            --secondary-dark: #7fc0ae;
-            --accent: #f5c6a0;
-            --dark: #2d2a2e;
-            --text-light: #f8f4f0;
-            --text-dark: #2d2a2e;
-            --card-radius: 28px;
+            --teal-dark: #0a2e2a;
+            --teal-primary: #13544a;
+            --teal-mid: #1e7a6b;
+            --teal-light: #3ba392;
+            --gold: #d4a847;
+            --gold-light: #ebd09e;
+            --gold-glow: #f7e8c4;
+            --cream: #faf7f0;
+            --cream-dark: #efe8dc;
+            --white: #ffffff;
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            --shadow-glow: 0 8px 32px rgba(212, 168, 71, 0.3);
             --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius: 20px;
+            --radius-sm: 12px;
         }
 
         html {
@@ -40,478 +45,1465 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #fce9e6 0%, #f8d5d0 35%, #f0d5c8 70%, #e8d5c4 100%);
-            min-height: 100vh;
-            color: var(--text-dark);
-            overflow-x: hidden;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--cream);
+            color: #1c1c1c;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* floating orbs – animated background */
-        .bg-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.50;
-        }
-        .bg-orb--1 {
-            width: 500px;
-            height: 500px;
-            top: -150px;
-            left: -100px;
-            background: radial-gradient(circle, rgba(242, 139, 156, 0.45), transparent 70%);
-            animation: floatOrb 22s ease-in-out infinite alternate;
-        }
-        .bg-orb--2 {
-            width: 600px;
-            height: 600px;
-            bottom: -200px;
-            right: -150px;
-            background: radial-gradient(circle, rgba(168, 216, 200, 0.40), transparent 70%);
-            animation: floatOrb 26s ease-in-out infinite alternate-reverse;
-        }
-        .bg-orb--3 {
-            width: 400px;
-            height: 400px;
-            top: 40%;
-            left: 60%;
-            background: radial-gradient(circle, rgba(245, 198, 160, 0.35), transparent 70%);
-            animation: floatOrb 18s ease-in-out infinite alternate;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        @keyframes floatOrb {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(50px, -40px) scale(1.15);
-            }
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        /* ----- GLASS CARD BASE ----- */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: var(--card-radius);
-        }
-
-        .glass-dark {
-            background: rgba(45, 42, 46, 0.20);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            border-radius: var(--card-radius);
-        }
-
-        .glass-light {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.40);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-            border-radius: var(--card-radius);
-        }
-
-        /* ----- LAYOUT CONTAINER ----- */
-        .app {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            padding: 0 24px;
         }
 
-        /* ----- NAVIGATION ----- */
+        /* ============================================================
+               SCROLLBAR
+            ============================================================ */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal-primary);
+        }
+
+        /* ============================================================
+               SECTION TITLE (reusable)
+            ============================================================ */
+        .section-title {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-title .label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(212, 168, 71, 0.12);
+            padding: 4px 18px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            color: var(--teal-dark);
+            margin-bottom: 10px;
+            line-height: 1.15;
+        }
+
+        .section-title h2 .gold {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .section-title h2 .gold::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 4px;
+            opacity: 0.4;
+        }
+
+        .section-title p {
+            color: #5a5a5a;
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .section-title .ornament {
+            display: inline-block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin-top: 14px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .section-title .ornament::before,
+        .section-title .ornament::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 7px;
+            height: 7px;
+            background: var(--gold);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+        .section-title .ornament::before {
+            left: -14px;
+        }
+        .section-title .ornament::after {
+            right: -14px;
+        }
+
+        /* ============================================================
+               NAVIGATION
+            ============================================================ */
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 12px 0;
+            background: transparent;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(212, 168, 71, 0.15);
+            transition: background var(--transition);
+        }
+
+        .navbar .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 32px;
-            margin-bottom: 40px;
-            border-radius: 60px;
-            background: rgba(255, 255, 255, 0.22);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            flex-wrap: wrap;
+            gap: 12px 20px;
         }
 
+        /* Logo */
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.9rem;
-            font-weight: 700;
-            color: var(--dark);
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none;
-        }
-        .logo i {
-            color: var(--primary);
-            font-size: 1.7rem;
-        }
-        .logo span {
-            font-weight: 400;
-            font-style: italic;
-            color: var(--primary-dark);
-            font-size: 0.85rem;
-            margin-left: 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+            flex-shrink: 0;
         }
 
+        .logo-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            
+            background:transparent;
+            color: var(--teal-dark);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-family: 'Playfair Display', serif;
+            transition: transform var(--transition);
+        }
+
+        .logo:hover .logo-icon {
+            transform: matrix(-0.139173, -0.990268, 0.990268, -0.139173, 0, 0) scale(1.05);
+        }
+
+        .logo span {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-family: cursive;
+        }
+
+        /* Nav links */
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
+            flex-wrap: wrap;
             list-style: none;
         }
-        .nav-links a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: var(--dark);
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            transition: all 0.3s ease;
-            letter-spacing: 0.3px;
-            background: transparent;
-            border: 1px solid transparent;
-        }
-        .nav-links a:hover,
-        .nav-links a:focus {
-            background: rgba(255, 255, 255, 0.40);
-            border-color: rgba(255, 255, 255, 0.50);
-            backdrop-filter: blur(4px);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
-        .nav-links a:active {
-            background: rgba(242, 139, 156, 0.25);
-        }
-        .nav-links a i {
-            margin-right: 6px;
-            font-size: 0.9rem;
-            color: var(--primary-dark);
-        }
-        .nav-links a.active {
-            background: rgba(255, 255, 255, 0.40);
-            border-color: rgba(255, 255, 255, 0.55);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-        }
 
-        /* ----- SECTIONS ----- */
-        section {
-            margin-bottom: 60px;
-            scroll-margin-top: 20px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.6rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-        .section-title i {
-            color: var(--primary);
-            margin-right: 12px;
-            font-size: 2rem;
-        }
-        .section-sub {
-            font-size: 1.05rem;
-            color: rgba(45, 42, 46, 0.70);
-            font-weight: 400;
-            max-width: 560px;
-        }
-
-        /* ----- HERO / HOME ----- */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-            padding: 20px 0 10px;
-        }
-        .hero-content {
-            padding: 20px 10px;
-        }
-        .hero-content .badge {
+        .nav-links li a {
             display: inline-block;
-            background: rgba(242, 139, 156, 0.20);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(242, 139, 156, 0.30);
-            border-radius: 40px;
-            padding: 4px 20px;
+            padding: 6px 16px;
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: var(--primary-dark);
-            margin-bottom: 18px;
-        }
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.6rem;
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--dark);
-            margin-bottom: 16px;
-        }
-        .hero-content h1 i {
-            color: var(--primary);
-            font-style: normal;
-        }
-        .hero-content p {
-            font-size: 1.1rem;
-            color: rgba(45, 42, 46, 0.75);
-            max-width: 440px;
-            margin-bottom: 28px;
-            font-weight: 400;
-        }
-        .hero-cta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            align-items: center;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 32px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            cursor: default;
-            background: rgba(255, 255, 255, 0.30);
-            backdrop-filter: blur(8px);
-            border-color: rgba(255, 255, 255, 0.40);
-            color: var(--dark);
-        }
-        .btn-primary {
-            background: rgba(242, 139, 156, 0.55);
-            border-color: rgba(242, 139, 156, 0.50);
-            backdrop-filter: blur(8px);
-            color: var(--dark);
-            box-shadow: 0 4px 16px rgba(242, 139, 156, 0.20);
-        }
-        .btn-primary:hover {
-            background: rgba(242, 139, 156, 0.75);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(242, 139, 156, 0.30);
-        }
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.40);
-            transform: translateY(-2px);
-        }
-
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            transition: all var(--transition);
+            letter-spacing: 0.2px;
             position: relative;
         }
-        .hero-flower-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            width: 100%;
-            max-width: 380px;
+
+        .nav-links li a:hover {
+            color: var(--gold-light);
+            background: rgba(212, 168, 71, 0.1);
         }
-        .flower-card {
-            background: rgba(255, 255, 255, 0.20);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 20px;
-            padding: 20px 12px;
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 4px;
+            transition: width var(--transition);
+        }
+
+        .nav-links li a:hover::after {
+            width: 40%;
+        }
+
+        /* CTA Contact button */
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--teal-dark) !important;
+            font-weight: 600 !important;
+            padding: 6px 24px !important;
+            border-radius: 30px !important;
+            box-shadow: var(--shadow-glow);
+            transition: all var(--transition) !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            color: var(--teal-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(212, 168, 71, 0.5) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* ============================================================
+               HERO — PARALLAX
+            ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            padding: 140px 24px 80px;
+            background-image: url('Src/temple.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            color: var(--white);
         }
-        .flower-card:hover {
-            transform: translateY(-4px) scale(1.02);
-            background: rgba(255, 255, 255, 0.30);
-            border-color: rgba(255, 255, 255, 0.55);
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(50, 255, 231, 0.321) 0%,
+                    rgba(1, 68, 60, 0.418) 50%,
+                    rgba(0, 0, 0, 0.258) 100%);
+            z-index: 1;
         }
-        .flower-card .icon {
-            font-size: 2.8rem;
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 860px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 28px;
+            border: 1px solid rgba(212, 168, 71, 0.4);
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            background: rgba(10, 46, 42, 0.4);
+            backdrop-filter: blur(6px);
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 8vw, 5.6rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 18px;
+            text-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold-light);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 640px;
+            margin: 0 auto 36px;
+            line-height: 1.8;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 44px;
+            background: var(--gold);
+            color: var(--teal-dark);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-glow);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 48px rgba(212, 168, 71, 0.55);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 16px 38px;
+            background: transparent;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            transition: all var(--transition);
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold-light);
+            color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgb(255, 255, 253);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: float-down 2.6s infinite;
+        }
+
+        .hero-scroll .line {
+            width: 1px;
+            height: 44px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        @keyframes float-down {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+                opacity: 1;
+            }
+        }
+
+        /* ============================================================
+               WHERE TO GO — PARALLAX
+            ============================================================ */
+        .where-to-go {
+            background-image: url('Src/Athirappilly\ Waterfalls.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 35%;
+            background-repeat: no-repeat;
+            position: relative;
+            color: var(--white);
+            padding: 100px 0;
+        }
+
+        .where-to-go::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(10, 46, 42, 0.85) 0%,
+                    rgba(19, 84, 74, 0.70) 100%);
+            z-index: 1;
+        }
+
+        .where-to-go .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .where-to-go .section-title h2 {
+            color: var(--white);
+        }
+        .where-to-go .section-title .label {
+            background: rgba(212, 168, 71, 0.18);
+            color: var(--gold-light);
+        }
+        .where-to-go .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .where-to-go .section-title .ornament {
+            background: var(--gold-light);
+        }
+        .where-to-go .section-title .ornament::before,
+        .where-to-go .section-title .ornament::after {
+            background: var(--gold-light);
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .dest-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 34px 24px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all var(--transition);
+        }
+
+        .dest-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(212, 168, 71, 0.25);
+            box-shadow: 0 24px 56px rgba(0, 0, 0, 0.3);
+        }
+
+        .dest-card .icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
             display: block;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        .dest-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gold-light);
             margin-bottom: 6px;
         }
-        .flower-card .name {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--dark);
-        }
-        .flower-card .sub {
-            font-size: 0.7rem;
-            color: rgba(45, 42, 46, 0.55);
-        }
-        .flower-card--lg {
-            grid-column: span 2;
-            padding: 24px;
-        }
-        .flower-card--lg .icon {
-            font-size: 3.6rem;
-        }
 
-        /* ----- FOOTER ----- */
-        .footer {
-            margin-top: 40px;
-            padding: 20px 28px;
-            border-radius: 40px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.20);
+        .dest-card p {
             font-size: 0.9rem;
-            color: rgba(45, 42, 46, 0.65);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
         }
-        .footer strong {
-            color: var(--dark);
+
+        .dest-card .link {
+            display: inline-block;
+            margin-top: 14px;
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(212, 168, 71, 0.25);
+            transition: all var(--transition);
+        }
+
+        .dest-card .link:hover {
+            border-bottom-color: var(--gold-light);
+            color: var(--white);
+        }
+
+        /* ============================================================
+               EXPERIENCES
+            ============================================================ */
+        .experiences {
+            background-image: url('Src/exp.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 90px 0;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .exp-card {
+            background-color: rgba(255, 255, 255, 0.271);
+            border-radius: var(--radius);
+            padding: 36px 28px 32px;
+            text-align: center;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--teal-mid));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .exp-card:hover::before {
+            opacity: 1;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
+        }
+
+        .exp-card .emoji {
+            font-size: 3.2rem;
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .exp-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--teal-dark);
+            margin-bottom: 6px;
+        }
+
+        .exp-card p {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+               PLAN YOUR TRIP — PARALLAX
+            ============================================================ */
+        .plan-trip {
+            background-image: url('Src/church.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 45%;
+            background-repeat: no-repeat;
+            position: relative;
+            color: var(--white);
+            padding: 100px 0;
+        }
+
+        .plan-trip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(10, 46, 42, 0.82) 0%,
+                    rgba(19, 84, 74, 0.65) 100%);
+            z-index: 1;
+        }
+
+        .plan-trip .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .plan-trip .section-title h2 {
+            color: var(--white);
+        }
+        .plan-trip .section-title .label {
+            background: rgba(212, 168, 71, 0.18);
+            color: var(--gold-light);
+        }
+        .plan-trip .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .plan-trip .section-title .ornament {
+            background: var(--gold-light);
+        }
+        .plan-trip .section-title .ornament::before,
+        .plan-trip .section-title .ornament::after {
+            background: var(--gold-light);
+        }
+
+        .plan-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            counter-reset: step;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: var(--radius);
+            padding: 34px 24px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all var(--transition);
+            counter-increment: step;
+        }
+
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.13);
+            transform: translateY(-8px);
+            border-color: rgba(212, 168, 71, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .step-card .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            background: var(--gold);
+            color: var(--teal-dark);
+            border-radius: 50%;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .step-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-bottom: 4px;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+               CULTURE / HERITAGE
+            ============================================================ */
+        .culture {
+            background-image: url('Src/chettuva.avif');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 40%;
+            padding: 90px 0;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .culture-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            transition: all var(--transition);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.10);
+        }
+
+        .culture-card .img-wrap {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .culture-card .img-wrap .tag {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            background: rgba(10, 46, 42, 0.75);
+            backdrop-filter: blur(6px);
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .culture-card .body {
+            padding: 24px 28px 28px;
+        }
+
+        .culture-card .body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--teal-dark);
+            margin-bottom: 4px;
+        }
+
+        .culture-card .body p {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+               GALLERY — PARALLAX  (📸 PORTRAIT / TALL PHOTOS)
+            ============================================================ */
+        .gallery {
+            background-image: url('Src/Athirappilly\ Waterfalls.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center 40%;
+            background-repeat: no-repeat;
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(10, 46, 42, 0.80) 0%,
+                    rgba(19, 84, 74, 0.60) 100%);
+            z-index: 1;
+        }
+
+        .gallery .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery .section-title h2 {
+            color: var(--white);
+        }
+        .gallery .section-title .label {
+            background: rgba(212, 168, 71, 0.18);
+            color: var(--gold-light);
+        }
+        .gallery .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .gallery .section-title .ornament {
+            background: var(--gold-light);
+        }
+        .gallery .section-title .ornament::before,
+        .gallery .section-title .ornament::after {
+            background: var(--gold-light);
+        }
+
+        /* ——— PORTRAIT GALLERY GRID ——— */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 2 / 3;  /* portrait: taller than wide */
+            border-radius: var(--radius-sm);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition);
+            cursor: default;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.20);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            z-index: 3;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 46, 42, 0.75), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 22px;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay span {
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(8px);
+            padding: 6px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+               CONTACT / CTA
+            ============================================================ */
+        .contact-cta {
+            background: var(--teal-dark);
+            color: var(--white);
+            padding: 80px 0 70px;
+            text-align: center;
+        }
+
+        .contact-cta .label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            background: rgba(212, 168, 71, 0.12);
+            padding: 4px 18px;
+            border-radius: 30px;
+            margin-bottom: 16px;
+        }
+
+        .contact-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            margin-bottom: 12px;
+        }
+
+        .contact-cta h2 .gold {
+            color: var(--gold);
+        }
+
+        .contact-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            font-weight: 300;
+        }
+
+        .contact-cta .btn-primary {
+            font-size: 1.05rem;
+            padding: 16px 52px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px 60px;
+            margin-top: 44px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-info .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.55);
+            transition: color var(--transition);
+        }
+
+        .contact-info .item:hover {
+            color: var(--gold-light);
+        }
+
+        .contact-info .item .emoji {
+            font-size: 1.3rem;
+        }
+
+        /* ============================================================
+               FOOTER
+            ============================================================ */
+        .footer {
+            background: #061f1c;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 36px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            font-size: 0.95rem;
             font-weight: 600;
         }
-        .footer i {
-            color: var(--primary);
+
+        .footer .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .hero-cta {
-                justify-content: center;
-            }
-            .hero-flower-grid {
-                max-width: 320px;
-                margin: 0 auto;
-            }
+        .footer .links a {
+            color: rgba(255, 255, 255, 0.3);
+            transition: color var(--transition);
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
         }
 
-        @media (max-width: 700px) {
-            body {
-                padding: 12px;
-            }
-            .navbar {
+        .footer .links a:hover {
+            color: var(--gold-light);
+        }
+
+        .footer .copy {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================================
+               RESPONSIVE
+            ============================================================ */
+        @media (max-width: 992px) {
+            .navbar .container {
                 flex-direction: column;
-                gap: 12px;
-                padding: 16px 20px;
-                border-radius: 32px;
+                align-items: center;
             }
             .nav-links {
-                flex-wrap: wrap;
                 justify-content: center;
-                gap: 4px;
             }
-            .nav-links a {
-                font-size: 0.8rem;
-                padding: 6px 14px;
+            .nav-links li a {
+                font-size: 0.75rem;
+                padding: 4px 12px;
             }
-            .hero-content h1 {
-                font-size: 2.4rem;
+            .hero {
+                min-height: 90vh;
+                padding-top: 170px;
             }
-            .section-title {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 3.2rem;
             }
-            .hero-flower-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .flower-card .icon {
-                font-size: 2rem;
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 22px;
             }
         }
 
-        @media (max-width: 460px) {
-            .hero-flower-grid {
+        @media (max-width: 768px) {
+            .dest-grid,
+            .exp-grid,
+            .plan-steps,
+            .culture-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .where-to-go,
+            .plan-trip,
+            .gallery {
+                padding: 70px 0;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 8px 0;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            .logo-icon {
+                width: 34px;
+                height: 34px;
+                font-size: 1rem;
+            }
+            .nav-links {
+                gap: 2px;
+            }
+            .nav-links li a {
+                font-size: 0.65rem;
+                padding: 3px 8px;
+            }
+            .nav-cta {
+                padding: 3px 14px !important;
+                font-size: 0.65rem !important;
+            }
+            .hero {
+                padding-top: 150px;
+                min-height: 85vh;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.9rem;
+            }
+            .btn-primary,
+            .btn-secondary {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+            .dest-grid,
+            .exp-grid,
+            .plan-steps,
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            section {
+                padding: 56px 0;
+            }
+            .section-title {
+                margin-bottom: 36px;
+            }
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            .where-to-go,
+            .plan-trip,
+            .gallery {
+                padding: 50px 0;
+            }
+            .contact-cta {
+                padding: 56px 0 48px;
+            }
+            .contact-cta h2 {
+                font-size: 1.8rem;
+            }
+            .footer .links {
+                gap: 12px;
+            }
+            .footer .links a {
+                font-size: 0.7rem;
+            }
+            .gallery-item .overlay {
+                padding: 14px;
+            }
+            .gallery-item .overlay span {
+                font-size: 0.7rem;
+                padding: 4px 14px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .gallery-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
-            .nav-links a {
-                font-size: 0.7rem;
-                padding: 4px 10px;
+            .hero h1 {
+                font-size: 1.6rem;
             }
-            .logo {
-                font-size: 1.5rem;
+            .nav-links li a {
+                font-size: 0.55rem;
+                padding: 2px 6px;
+            }
+            .nav-cta {
+                padding: 2px 10px !important;
+                font-size: 0.55rem !important;
+            }
+            .gallery-item {
+                aspect-ratio: 2 / 3;
+            }
+            .gallery-item .overlay span {
+                font-size: 0.6rem;
+                padding: 3px 10px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-orb bg-orb--1"></div>
-    <div class="bg-orb bg-orb--2"></div>
-    <div class="bg-orb bg-orb--3"></div>
-
-    <div class="app">
-
-        <!-- ====== NAVIGATION ====== -->
-        <nav class="navbar">
-            <a href="index.html" class="logo">
-                <i class="fas fa-seedling"></i> Flora <span>Thrissur</span>
+    <!-- ============================================================
+    NAVIGATION
+    ============================================================ -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <!-- Logo -->
+            <a href="#" class="logo" aria-label="Thrissur Tourism Home">
+                <span class="logo-icon"><img src="Src/LOGO (2).png" alt="Thrissur Tourism Logo"></span><br>
+                <br><span>Thrissur Tourism</span>
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="about.html"><i class="fas fa-leaf"></i> About</a></li>
-                <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </nav>
 
-        <!-- ====== HOME HERO ====== -->
-        <section id="home">
-            <div class="hero">
-                <div class="hero-content">
-                    <span class="badge"><i class="fas fa-map-pin"></i> Thrissur · Kerala</span>
-                    <h1>Blossoms <i>&</i> <br />Bouquets <i>for</i> every <br />moment.</h1>
-                    <p>Welcome to Flora — where nature meets artistry. Fresh flowers, handcrafted arrangements, and same‑day delivery across Thrissur city.</p>
-                    <div class="hero-cta">
-                        <a href="gallery.html" class="btn btn-primary"><i class="fas fa-flower"></i> Explore Gallery</a>
-                        <a href="contact.html" class="btn btn-outline"><i class="fas fa-phone-alt"></i> Get in touch</a>
+            <!-- Nav links -->
+            <ul class="nav-links">
+                <li><a href="#where-to-go">Where to Go</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#plan-trip">Plan Your Trip</a></li>
+                <li><a href="#culture">Culture / Heritage</a></li>
+                <li><a href="#gallery">Gallery</a></li><br><br>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    HERO — PARALLAX
+    ============================================================ -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">✦ Cultural Capital of Kerala</div>
+            <h1>
+                Discover the <br />
+                <span class="highlight">Heart of Kerala</span>
+            </h1>
+            <p>
+                Thrissur — where ancient temples, vibrant festivals, and
+                lush landscapes blend into an unforgettable cultural tapestry.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#plan-trip" class="btn-primary">Plan Your Trip</a>
+                <a href="#where-to-go" class="btn-secondary">Explore →</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    WHERE TO GO — PARALLAX
+    ============================================================ -->
+    <section class="where-to-go" id="where-to-go">
+        <div class="container">
+            <div class="section-title">
+                <span class="label">Discover</span>
+                <h2>Where to <span class="gold">Go</span></h2>
+                <div class="ornament"></div>
+                <p>From majestic temples to thundering waterfalls — explore the best of Thrissur.</p>
+            </div>
+            <div class="dest-grid">
+                <div class="dest-card">
+                    <img src="Src/temple.jpg" alt="Vadakkunnathan Temple" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                    <h3>Vadakkunnathan Temple</h3>
+                    <p>One of Kerala's oldest Shiva temples, surrounded by a massive stone wall and forest.</p>
+                    <a href="#" class="link">Learn More →</a>
+                </div>
+                <div class="dest-card">
+                    <img src="Src/Athirappilly Waterfalls.jpg" alt="Athirappilly Waterfalls" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                    <h3>Athirappilly Waterfalls</h3>
+                    <p>India's Niagara — a spectacular 80-foot cascade amidst lush green forest.</p>
+                    <a href="#" class="link">Learn More →</a>
+                </div>
+                <div class="dest-card">
+                    <img src="Src/Shakthan Thampuran Palace.jpg" alt="Shakthan Thampuran Palace" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                    <h3>Shakthan Thampuran Palace</h3>
+                    <p>A stunning blend of Kerala and Dutch architecture, once home to the royal family.</p>
+                    <a href="#" class="link">Learn More →</a>
+                </div>
+                <div class="dest-card">
+                    <img src="Src/Thrissur Zoo & Museum.jpg" alt="Thrissur Zoo & Museum" style="width:100%; border-radius:8px; margin-bottom:20px;">
+                    <h3>Thrissur Zoo & Museum</h3>
+                    <p>One of India's oldest zoos, featuring a rich collection of flora, fauna, and artifacts.</p>
+                    <a href="#" class="link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    EXPERIENCES
+    ============================================================ -->
+    <section class="experiences" id="experiences">
+        <div class="container">
+            <div class="section-title">
+                <span class="label">Immerse</span>
+                <h2>Unforgettable <span class="gold">Experiences</span></h2>
+                <div class="ornament"></div>
+                <p>Every moment in Thrissur tells a story — dive into its soul.</p>
+            </div>
+            <div class="exp-grid">
+                <div class="exp-card">
+                    <span class="emoji">🐘</span>
+                    <h3>Thrissur Pooram</h3>
+                    <p>Witness the grandest temple festival on earth — caparisoned elephants, drummers &amp; firecrackers.</p>
+                </div>
+                <div class="exp-card">
+                    <span class="emoji">🎭</span>
+                    <h3>Kathakali &amp; Mohiniyattam</h3>
+                    <p>Experience Kerala's classical dance-dramas with elaborate makeup and expressive storytelling.</p>
+                </div>
+                <div class="exp-card">
+                    <span class="emoji">⛰️</span>
+                    <h3>Waterfall Treks</h3>
+                    <p>Trek through the rainforests of Athirappilly and Vazhachal for breathtaking views.</p>
+                </div>
+                <div class="exp-card">
+                    <span class="emoji">🍛</span>
+                    <h3>Kerala Sadya</h3>
+                    <p>Feast on a traditional vegetarian meal served on a banana leaf — a culinary ritual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PLAN YOUR TRIP — PARALLAX
+    ============================================================ -->
+    <section class="plan-trip" id="plan-trip">
+        <div class="container">
+            <div class="section-title">
+                <span class="label">Start Here</span>
+                <h2>Plan Your <span class="gold">Trip</span></h2>
+                <div class="ornament"></div>
+                <p>Your journey to the cultural heart of Kerala begins in three simple steps.</p>
+            </div>
+            <div class="plan-steps">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Choose Your Passion</h3>
+                    <p>Temples, waterfalls, festivals, or wildlife — pick your Thrissur story.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>Customize Your Itinerary</h3>
+                    <p>We'll craft a journey that matches your pace, style, and interests.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Arrive &amp; Explore</h3>
+                    <p>Land in Thrissur — we'll handle the rest, from stays to guided tours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CULTURE / HERITAGE
+    ============================================================ -->
+    <section class="culture" id="culture">
+        <div class="container">
+            <div class="section-title">
+                <span class="label">Legacy</span>
+                <h2>Culture &amp; <span class="gold">Heritage</span></h2>
+                <div class="ornament"></div>
+                <p>Thrissur is a living museum — where traditions thrive and history breathes.</p>
+            </div>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="img-wrap" style="background-image: url('Src/Thrissur\ pooram.jpg');">
+                        <span class="tag">Festival</span>
+                    </div>
+                    <div class="body">
+                        <h3>Thrissur Pooram — The Mother of All Festivals</h3>
+                        <p>Celebrated at the Vadakkunnathan Temple, this spectacular event features 30 caparisoned elephants, mesmerizing percussion, and a grand fireworks display.</p>
                     </div>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-flower-grid">
-                        <div class="flower-card"><span class="icon">🌹</span><div class="name">Rose</div><div class="sub">classic</div></div>
-                        <div class="flower-card"><span class="icon">🌷</span><div class="name">Tulip</div><div class="sub">elegant</div></div>
-                        <div class="flower-card"><span class="icon">🌸</span><div class="name">Cherry</div><div class="sub">bloom</div></div>
-                        <div class="flower-card"><span class="icon">🌻</span><div class="name">Sunflower</div><div class="sub">radiant</div></div>
-                        <div class="flower-card flower-card--lg"><span class="icon">💐</span><div class="name">Custom Bouquets</div><div class="sub">designed for you</div></div>
+                <div class="culture-card">
+                    <div class="img-wrap" style="background-image: url('Src/Kerala\ Kalamandalam.jpeg');">
+                        <span class="tag">Art</span>
+                    </div>
+                    <div class="body">
+                        <h3>Kerala Kalamandalam</h3>
+                        <p>India's premier center for performing arts — preserving Kathakali, Mohiniyattam, and other classical traditions since 1930.</p>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <div class="img-wrap" style="background-image: url('Src/temple\ p.jpeg');">
+                        <span class="tag">Heritage</span>
+                    </div>
+                    <div class="body">
+                        <h3>Ancient Temples &amp; Palaces</h3>
+                        <p>From the 10th-century Vadakkunnathan Temple to the Dutch-influenced Shakthan Palace — Thrissur is a treasure trove of architectural wonders.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- ====== FOOTER ====== -->
-        <footer class="footer">
-            <p>
-                <i class="fas fa-seedling"></i> &nbsp; <strong>Flora</strong> · Thrissur &nbsp; | &nbsp;
-                <i class="fas fa-map-pin"></i> Swaraj Round, MG Road &nbsp; | &nbsp;
-                <i class="fas fa-phone"></i> +91 9847 123 456
-                <br style="display:block; margin:4px 0;" />
-                <span style="opacity:0.6; font-size:0.8rem;">
-                    <i class="far fa-copyright"></i> 2026 Flora — crafted with <i class="fas fa-heart" style="color:var(--primary);"></i> in Thrissur
+    <!-- ============================================================
+    GALLERY — PORTRAIT / TALL PHOTOS
+    ============================================================ -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <span class="label">Visuals</span>
+                <h2>Photo <span class="gold">Gallery</span></h2>
+                <div class="ornament"></div>
+                <p>Glimpses of Thrissur's beauty — from sacred temples to wild waterfalls.</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- 1 -->
+                <div class="gallery-item" style="background-image: url('Src/templeA.jpg');">
+                    <div class="overlay"><span>⛩️ Temple</span></div>
+                </div>
+                <!-- 2 -->
+                <div class="gallery-item" style="background-image: url('Src/church2.jpg');">
+                    <div class="overlay"><span>⛪ Church</span></div>
+                </div>
+                <!-- 3 -->
+                <div class="gallery-item" style="background-image: url('Src/pooramA.jpg');">
+                    <div class="overlay"><span>🎆 Festival</span></div>
+                </div>
+                 <div class="gallery-item" style="background-image: url('Src/fest.jpg');">
+                    <div class="overlay"><span>🎭 Art &amp; Culture</span></div>
+                </div>
+                <!-- 4 -->
+                <div class="gallery-item" style="background-image: url('Src/pooram1.jpg');">
+                    <div class="overlay"><span>🐘 Festival</span></div>
+                </div>
+                <!-- 5 -->
+               
+                <!-- 6 -->
+                <div class="gallery-item" style="background-image: url('Src/naalumanikattu.jpg');">
+                    <div class="overlay"><span>Boating</span></div>
+                </div>
+                <!-- 7 -->
+                <div class="gallery-item" style="background-image: url('Src/railway.jpg');">
+                    <div class="overlay"><span>🚂 Railway</span></div>
+                </div>
+                <!-- 8 -->
+                <div class="gallery-item" style="background-image: url('Src/temple\ x.jpg');">
+                    <div class="overlay"><span> Medamkulangara</span></div>
+                </div>
+                <!-- 9 (extra) -->
+                <div class="gallery-item" style="background-image: url('Src/Chalakudi.jpg');">
+                    <div class="overlay"><span> Chalakudi</span></div>
+                </div>
+                <div class="gallery-item" style="background-image: url('Src/Cheraman\ Jummah\ Masjid.jpg');">
+                    <div class="overlay"><span> Cheraman Jummah Masjid</span></div>
+                </div>
+                 <div class="gallery-item" style="background-image: url('Src/Chimmini.jpg');">
+                    <div class="overlay"><span> Chimmini</div>
+                </div>
+                               <div class="gallery-item" style="background-image: url('Src/onam.jpg');">
+                    <div class="overlay"><span> Song -</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT / CTA
+    ============================================================ -->
+    <section class="contact-cta" id="contact">
+        <div class="container">
+            <span class="label">Get in Touch</span>
+            <h2>Ready to Explore <span class="gold">Thrissur</span>?</h2>
+            <p>Let's craft your perfect cultural getaway. Our team is here to help you every step of the way.</p>
+            <a href="#" class="btn-primary">Contact Us Now</a>
+
+            <div class="contact-info">
+                <span class="item">
+                    <span class="emoji">📞</span> +91 98765 43210
                 </span>
-            </p>
-        </footer>
+                <span class="item">
+                    <span class="emoji">✉️</span> hello@thrissurtourism.in
+                </span>
+                <span class="item">
+                    <span class="emoji">📍</span> Thrissur, Kerala, India
+                </span>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="brand">✦ Thrissur Tourism — Cultural Capital of Kerala</div>
+            <div class="links">
+                <a href="#home">Home</a>
+                <a href="#where-to-go">Destinations</a>
+                <a href="#experiences">Experiences</a>
+                <a href="#plan-trip">Plan</a>
+                <a href="#culture">Heritage</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="copy">&copy; 2026 Thrissur Tourism. Crafted with pride for the heart of Kerala.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
